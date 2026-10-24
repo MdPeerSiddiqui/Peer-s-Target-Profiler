@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "tool": "PEER'S Target Profiler v1.0",
+    "intern_name": "Md Peer Siddiqui",
+    "organization": "Sqrock IT Solution",
+    "track": "Social Engineering Attack Simulations Using Python (Day 05)",
+    "timestamp_utc": "2026-10-24T06:21:25.276877Z"
+  },
+  "target_profile": {
+    "login": "sqrock-engineer",
+    "name": "Harish Kumar",
+    "company": "Sqrock IT Solution",
+    "location": "Bangalore, India",
+    "bio": "Senior Cloud Security Engineer & Backend Dev. Building resilient identity pipelines.",
+    "blog": "https://sqrock.com/engineering",
+    "twitter_username": "harish_sec",
+    "public_repos_count": 14,
+    "followers": 142,
+    "following": 88,
+    "top_languages": {
+      "Python": 8,
+      "Go": 4,
+      "TypeScript": 2,
+      "Dockerfile": 2
+    },
+    "top_repositories": [
+      {
+        "name": "cloud-guard-iam",
+        "stars": 45,
+        "forks": 12,
+        "lang": "Python",
+        "desc": "Zero-trust IAM policy auditor"
+      },
+      {
+        "name": "telecom-sip-monitor",
+        "stars": 32,
+        "forks": 8,
+        "lang": "Go",
+        "desc": "Real-time VoIP SIP telemetry scanner"
+      }
+    ],
+    "recovered_commit_emails": [
+      "harish.k@sqrock-labs.internal",
+      "harish.dev99@gmail.com"
+    ]
+  },
+  "adversary_intelligence": {
+    "activity_analysis": {
+      "has_data": true,
+      "total_events_sampled": 10,
+      "peak_utc_hour": 4,
+      "inferred_region": "Asia-Pacific / India (UTC+5:30 to UTC+8)",
+      "hour_distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 0,
+        "15": 0,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0
+      }
+    },
+    "spear_phishing_pretexts": [
+      {
+        "id": "SP-01",
+        "title": "Technical Zero-Day CVE Alert (Python Ecosystem)",
+        "vector": "Email / GitHub Issue Injection",
+        "pretext": "Adversary impersonates GitHub Security Advisories or the Python core security team. They send an urgent notification citing an unauthenticated Remote Code Execution (RCE) vulnerability in dependency trees matching repository 'cloud-guard-iam'.",
+        "hook": "Urgent CVE Patch for cloud-guard-iam (Python)",
+        "call_to_action": "Click link to review affected dependency tree: https://security-patch-advisory.org/cve/cloud-guard-iam",
+        "psychological_triggers": [
+          "Urgency",
+          "Technical Authority",
+          "Fear of Compromise"
+        ]
+      },
+      {
+        "id": "SP-02",
+        "title": "Corporate Workspace Re-Authentication (Sqrock IT Solution)",
+        "vector": "Spear-Phishing Email / Internal Slack Impersonation",
+        "pretext": "Leveraging the public exposure of employer 'Sqrock IT Solution' and location 'Bangalore, India', attacker impersonates Sqrock IT Solution IT Operations. They notify Harish Kumar that their corporate VPN/SSO certificate is pending mandatory migration before the end of the business day.",
+        "hook": "Sqrock IT Solution IT Notice: Mandatory Single Sign-On Endpoint Renewal",
+        "call_to_action": "Authenticate your identity via the corporate portal: https://login.sqrockitsolution-portal.net/sso",
+        "psychological_triggers": [
+          "Authority",
+          "Compliance",
+          "Urgency"
+        ]
+      },
+      {
+        "id": "SP-03",
+        "title": "Targeted Executive / Recruiter Headhunting Hook (Python Specialist)",
+        "vector": "LinkedIn InMail / Direct Email Spear-Phish",
+        "pretext": "Attacker poses as an executive talent scout from a high-profile technology firm, praising Harish Kumar's open-source contributions in Python. They attach a weaponized PDF or link purporting to be a confidential compensation structure and technical architecture brief.",
+        "hook": "Confidential Senior Python Architecture Lead Opportunity for Harish Kumar",
+        "call_to_action": "Download the candidate briefing packet: https://talent-briefing-executive.io/role-spec.pdf",
+        "psychological_triggers": [
+          "Flattery / Liking",
+          "Greed / Ambition",
+          "Curiosity"
+        ]
+      }
+    ]
+  },
+  "defensive_opsec_evaluation": {
+    "exposure_score": 100,
+    "exposure_tier": "CRITICAL EXPOSURE",
+    "exposure_summary": "Severe identity exposure. Direct personal email, employer, and activity patterns enable multi-stage targeted whaling/vishing.",
+    "risk_factors": [
+      {
+        "factor": "Real Full Name Disclosed",
+        "points": 15,
+        "risk": "Enables cross-platform social graph pivoting"
+      },
+      {
+        "factor": "Employer/Organization Listed",
+        "points": 20,
+        "risk": "Enables corporate authority & IT helpdesk pretexting"
+      },
+      {
+        "factor": "Geographic Location Exposed",
+        "points": 15,
+        "risk": "Permits targeted timezone and regional event pretexting"
+      },
+      {
+        "factor": "Raw Commit/Profile Email Leaked (2 found)",
+        "points": 25,
+        "risk": "Bypasses web contact forms; direct spear-phishing inbox vector"
+      },
+      {
+        "factor": "Personal Domain / Twitter Linked",
+        "points": 10,
+        "risk": "Provides secondary attack surfaces and credential harvesting avenues"
+      },
+      {
+        "factor": "Descriptive Bio & Professional Focus",
+        "points": 15,
+        "risk": "Reveals current active projects and psychological triggers"
+      }
+    ]
+  }
+}
