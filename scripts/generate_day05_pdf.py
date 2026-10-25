@@ -3,11 +3,10 @@
 PEER'S Target Profiler - Executive Multi-Page Lab Report Compiler (Day 05)
 Sqrock IT Solution Cybersecurity Internship Track: Social Engineering Attack Simulations Using Python
 
-Compiles an authoritative executive lab report covering:
-- Passive OSINT intelligence gathering from public Git metadata
-- Commit email de-anonymization and timezone behavioral profiling
-- Weaponized spear-phishing pretext generation (Attacker Perspective)
-- Quantitative OPSEC exposure scoring (0-100) and defense frameworks
+Compiles an authoritative 7-page executive engineering report integrating:
+- 7 empirical execution screenshots (Kali Linux CLI roleplay, live recon, timezone radar, pretexts, OPSEC scorer, JSON export, GitHub repo)
+- In-depth forensic explanations for every screenshot
+- Deep technical analyses of OSINT recon, Git author leaks, and spear-phishing pretexts
 - Automated 7-point unit test validation ledger and ethical compliance statements
 """
 
@@ -16,9 +15,8 @@ import sys
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.units import inch
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image, KeepTogether, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image
 )
 from reportlab.pdfgen import canvas
 
@@ -162,10 +160,22 @@ def create_report():
         fontName='Helvetica-Bold'
     )
 
+    caption_style = ParagraphStyle(
+        'Caption',
+        parent=styles['Normal'],
+        fontName='Helvetica-Bold',
+        fontSize=8,
+        leading=10,
+        textColor=DARK_BLUE,
+        spaceBefore=3,
+        spaceAfter=4,
+        alignment=1 # Center
+    )
+
     story = []
 
     # =========================================================================
-    # PAGE 1: COVER PAGE / EXECUTIVE SUMMARY & RESEARCH OBJECTIVE
+    # PAGE 1: COVER PAGE / EXECUTIVE SUMMARY & RESEARCH OBJECTIVES
     # =========================================================================
     meta_data = [
         [
@@ -275,7 +285,7 @@ def create_report():
     story.append(PageBreak())
 
     # =========================================================================
-    # PAGE 2: OSINT RECONNAISSANCE MECHANICS & TARGET PROFILING CATALOG
+    # PAGE 2: OSINT RECONNAISSANCE MECHANICS & REFERENCE TARGET CATALOG
     # =========================================================================
     story.append(Paragraph("3. OSINT Reconnaissance & Data Harvesting Mechanics", h1_style))
     story.append(Paragraph(
@@ -302,8 +312,7 @@ def create_report():
 
     story.append(Paragraph("4. Target Dossier Analysis: Empirical Profiles", h1_style))
     story.append(Paragraph(
-        "To test profiling accuracy and establish defensive benchmarks, three diverse profiles were analyzed: Linus Torvalds (Kernel Creator), "
-        "Harish Kumar (Enterprise Security Engineer), and The Octocat (Official GitHub Mascot):",
+        "To test profiling accuracy and establish defensive benchmarks, diverse profiles were analyzed across independent development sectors:",
         body_style
     ))
 
@@ -335,128 +344,20 @@ def create_report():
             Paragraph("Ruby (50%)<br/>JavaScript (25%)", body_style),
             Paragraph("<code>octocat@github.com</code>", body_style),
             Paragraph("<b>75/100</b><br/><font color='#A8201A'>High Exposure</font>", body_style)
+        ],
+        [
+            Paragraph("<b>@MdPeerSiddiqui</b><br/>Mohammed Peer Siddiqui", body_style),
+            Paragraph("Cybersecurity Student<br/>Not Specified", body_style),
+            Paragraph("Python (85%)<br/>HTML (14%)", body_style),
+            Paragraph("<i>None (Private Noreply Mask Active)</i>", body_style),
+            Paragraph("<b>30/100</b><br/><font color='#E67E22'>Moderate Exposure</font>", body_style)
         ]
     ]
-    t_prof = Table(profile_comp, colWidths=[105, 115, 95, 135, 90])
+    t_prof = Table(profile_comp, colWidths=[110, 115, 95, 130, 90])
     t_prof.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), NAVY_PRIMARY),
         ('TEXTCOLOR', (0,0), (-1,0), colors.white),
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
-        ('BOX', (0,0), (-1,-1), 1, NAVY_PRIMARY),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT_BG]),
-        ('TOPPADDING', (0,0), (-1,-1), 4),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 4),
-        ('LEFTPADDING', (0,0), (-1,-1), 5),
-        ('RIGHTPADDING', (0,0), (-1,-1), 5),
-    ]))
-    story.append(t_prof)
-
-    story.append(PageBreak())
-
-    # =========================================================================
-    # PAGE 3: ATTACKER PERSPECTIVE: SPEAR-PHISHING PRETEXT SYNTHESIS
-    # =========================================================================
-    story.append(Paragraph("5. Attacker Perspective: Spear-Phishing Pretext Synthesis", h1_style))
-    story.append(Paragraph(
-        "A critical requirement of the Day 05 assignment is documenting the <i>'Attacker Perspective'</i>—demonstrating how an adversary "
-        "translates raw OSINT data points into weaponized spear-phishing attack vectors. PEER'S Target Profiler programmatically synthesizes "
-        "three distinct attack pretexts for any loaded profile:",
-        body_style
-    ))
-
-    pretext_data = [
-        [
-            Paragraph("<b>Pretext Vector & Hook</b>", body_bold),
-            Paragraph("<b>OSINT Data Leveraged</b>", body_bold),
-            Paragraph("<b>Adversary Attack Narrative & Deceptive CTA</b>", body_bold)
-        ],
-        [
-            Paragraph("<b>[SP-01] Technical Zero-Day CVE Alert</b><br/><i>Urgent CVE Patch for cloud-guard-iam (Python)</i>", body_style),
-            Paragraph("• Top Repo: <code>cloud-guard-iam</code><br/>• Primary Language: <code>Python</code><br/>• Leaked Email Address", body_style),
-            Paragraph(
-                "Adversary impersonates GitHub Security Advisories or a Python package maintainer. "
-                "The email cites a critical unauthenticated Remote Code Execution (RCE) flaw in repository dependencies. "
-                "<br/><b>CTA:</b> <i>'Review affected dependency tree: https://security-patch-advisory.org/cve/...'</i><br/>"
-                "<b>Triggers:</b> Urgency, Technical Authority, Fear of Supply-Chain Compromise.",
-                body_style
-            )
-        ],
-        [
-            Paragraph("<b>[SP-02] Corporate SSO / IT Migration</b><br/><i>Sqrock IT: Mandatory Single Sign-On Renewal</i>", body_style),
-            Paragraph("• Employer: <code>Sqrock IT Solution</code><br/>• Target Name: <code>Harish Kumar</code><br/>• Work Email", body_style),
-            Paragraph(
-                "Adversary impersonates internal corporate IT Helpdesk. Citing an endpoint certificate expiration, "
-                "the attacker issues a 24-hour ultimatum threatening account suspension across internal VPN and Slack channels. "
-                "<br/><b>CTA:</b> <i>'Authenticate identity at: https://login.sqrockitsolution-portal.net/sso'</i><br/>"
-                "<b>Triggers:</b> Legitimate Corporate Authority, Fear of Disruption, Strict Deadline.",
-                body_style
-            )
-        ],
-        [
-            Paragraph("<b>[SP-03] Targeted Executive Recruiter Hook</b><br/><i>Confidential Python Lead Role for Harish</i>", body_style),
-            Paragraph("• Skillset: <code>Python, Go</code><br/>• Location: <code>Bangalore</code><br/>• Bio & Projects", body_style),
-            Paragraph(
-                "Posing as an executive recruiter from a high-paying international firm, the attacker praises specific "
-                "open-source commits and attaches a weaponized PDF or portal link containing 'compensation guidelines'. "
-                "<br/><b>CTA:</b> <i>'Download role brief: https://talent-briefing-executive.io/role-spec.pdf'</i><br/>"
-                "<b>Triggers:</b> Flattery, Professional Ambition, Financial Incentive.",
-                body_style
-            )
-        ]
-    ]
-    t_pretext = Table(pretext_data, colWidths=[160, 130, 250])
-    t_pretext.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), DARK_BLUE),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
-        ('BOX', (0,0), (-1,-1), 1, DARK_BLUE),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT_BG]),
-        ('TOPPADDING', (0,0), (-1,-1), 4),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 4),
-        ('LEFTPADDING', (0,0), (-1,-1), 5),
-        ('RIGHTPADDING', (0,0), (-1,-1), 5),
-    ]))
-    story.append(t_pretext)
-    story.append(Spacer(1, 8))
-
-    story.append(Paragraph("6. Psychological Exploitation Mechanisms", h2_style))
-    story.append(Paragraph(
-        "By intertwining factual reconnaissance (actual repository names, company names, and real programming languages) with synthetic urgency, "
-        "the adversary disarms the victim's natural vigilance. Unlike generic spam, target-specific pretexting achieves an estimated <b>70%+ "
-        "click-through rate</b> because the request appears directly relevant to the developer's day-to-day responsibilities.",
-        body_style
-    ))
-
-    story.append(PageBreak())
-
-    # =========================================================================
-    # PAGE 4: BEHAVIORAL PROFILING, OPSEC SCORING & DEFENSIVE REMEDIATION
-    # =========================================================================
-    story.append(Paragraph("7. Digital Footprint & OPSEC Risk Scoring Algorithm", h1_style))
-    story.append(Paragraph(
-        "To empower security teams and developers to audit their own exposure, PEER'S Target Profiler incorporates a quantitative "
-        "<b>0–100 OPSEC Exposure Engine</b> based on empirical vulnerability factors:",
-        body_style
-    ))
-
-    opsec_factors = [
-        [Paragraph("<b>Reconnaissance Factor</b>", body_bold), Paragraph("<b>Weight</b>", body_bold), Paragraph("<b>Adversary Weaponization Impact</b>", body_bold)],
-        [Paragraph("Direct Commit / Profile Email Leak", body_style), Paragraph("<b>+25 pts</b>", body_style), Paragraph("Permits direct spear-phishing inbox delivery, bypassing web forms.", body_style)],
-        [Paragraph("Employer / Organization Listed", body_style), Paragraph("<b>+20 pts</b>", body_style), Paragraph("Enables internal IT Helpdesk, HR, and corporate authority pretexting.", body_style)],
-        [Paragraph("Real Full Name Disclosed", body_style), Paragraph("<b>+15 pts</b>", body_style), Paragraph("Facilitates cross-platform correlation across LinkedIn, Twitter, and breach databases.", body_style)],
-        [Paragraph("Geographic Location Exposed", body_style), Paragraph("<b>+15 pts</b>", body_style), Paragraph("Allows timezone mapping, regional event hooks, and localized pretexts.", body_style)],
-        [Paragraph("Detailed Bio / Professional Focus", body_style), Paragraph("<b>+15 pts</b>", body_style), Paragraph("Discloses active project domains, seniority, and psychological levers.", body_style)],
-        [Paragraph("Personal Domain / Social Links", body_style), Paragraph("<b>+10 pts</b>", body_style), Paragraph("Expands secondary reconnaissance surface to personal hosting and DNS records.", body_style)]
-    ]
-    t_opsec = Table(opsec_factors, colWidths=[170, 70, 300])
-    t_opsec.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), NAVY_PRIMARY),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
-        ('ALIGN', (1,0), (1,-1), 'CENTER'),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
         ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('BOX', (0,0), (-1,-1), 1, NAVY_PRIMARY),
@@ -466,22 +367,221 @@ def create_report():
         ('LEFTPADDING', (0,0), (-1,-1), 5),
         ('RIGHTPADDING', (0,0), (-1,-1), 5),
     ]))
-    story.append(t_opsec)
-    story.append(Spacer(1, 8))
+    story.append(t_prof)
 
-    story.append(Paragraph("8. Defender OPSEC Hardening & Footprint Reduction", h1_style))
+    story.append(PageBreak())
+
+    # =========================================================================
+    # PAGE 3: EMPIRICAL EVIDENCE PHASE 1 (Figures 1 & 2)
+    # =========================================================================
+    story.append(Paragraph("5. Empirical Verification & Evidence Breakdown (Phase 1)", h1_style))
     story.append(Paragraph(
-        "<b>1. Enforce GitHub Email Masking:</b> Configure account settings to <i>'Keep my email addresses private'</i> and check <i>'Block "
-        "command line pushes that expose my email'</i> to prevent accidental Git author leaks.<br/>"
-        "<b>2. Git Author Sanitization:</b> Ensure local git configurations utilize the privacy mask: "
-        "<code>git config --global user.email 'username@users.noreply.github.com'</code>.<br/>"
-        "<b>3. Remove Operational Infrastructure from Bios:</b> Avoid listing proprietary internal tooling names, internal domains, or "
-        "specific enterprise subsidiaries in public biographies.<br/>"
-        "<b>4. Out-of-Band Security Notification Verification:</b> Establish a zero-trust policy where all unexpected security alerts, "
-        "dependency patches, or corporate re-authentication emails are validated through official internal dashboards before clicking links.",
+        "The following empirical test captures demonstrate the actual execution of PEER'S Target Profiler within an authorized "
+        "Kali Linux security research environment, profiling live public developer infrastructure.",
         body_style
     ))
-    story.append(Spacer(1, 6))
+
+    # Screenshot 1: Banner & Startup
+    img1_path = os.path.join(SCREENSHOTS_DIR, "01_kali_init_banner.png")
+    if os.path.exists(img1_path):
+        story.append(Image(img1_path, width=440, height=222))
+        story.append(Paragraph("Figure 1: Kali Linux Terminal Cold-Start & Custom Dual-Tone ASCII Banner Rendering", caption_style))
+    
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 1:</b><br/>"
+        "• <b>Environment Verification:</b> Native Kali Linux execution session (<code>kali@kali:~/Peer-s-Target-Profiler</code>).<br/>"
+        "• <b>Repository Integrity:</b> Directory listing (<code>ls</code>) verifies complete suite files (<code>LICENSE</code>, <code>README.md</code>, "
+        "<code>reports</code>, <code>requirements.txt</code>, <code>target_profiler.py</code>, <code>targets</code>, <code>tests</code>).<br/>"
+        "• <b>Cold-Start Initialization:</b> Running <code>python target_profiler.py</code> renders the ANSI production banner and displays the 10-point "
+        "Master Options menu with zero configuration bottlenecks.",
+        body_style
+    ))
+    story.append(Spacer(1, 4))
+
+    # Screenshot 2: Target Dossier
+    img2_path = os.path.join(SCREENSHOTS_DIR, "02_target_recon_dossier.png")
+    if os.path.exists(img2_path):
+        story.append(Image(img2_path, width=440, height=222))
+        story.append(Paragraph("Figure 2: Live GitHub OSINT Target Reconnaissance Dossier for @MdPeerSiddiqui", caption_style))
+
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 2:</b><br/>"
+        "• <b>Target Identification:</b> Selecting Option <code>[1]</code> and querying live target <code>@MdPeerSiddiqui</code> dynamically "
+        "retrieved full identity anchors: Full Name (<i>Mohammed Peer Siddiqui</i>), public bio, and 9 indexed repositories.<br/>"
+        "• <b>Tech Stack Mapping:</b> Aggregated programming languages revealed <b>85% Python</b> (6 repositories) and 14% HTML.<br/>"
+        "• <b>Notable Repositories:</b> Correctly flagged <code>Peer-s-Target-Profiler</code>, <code>PEER-S-Vish-Smish-Simulator</code>, and "
+        "<code>Peer-s-Phish-Detector</code> as primary targets for attack weaponization.",
+        body_style
+    ))
+
+    story.append(PageBreak())
+
+    # =========================================================================
+    # PAGE 4: EMPIRICAL EVIDENCE PHASE 2 (Figures 3 & 4)
+    # =========================================================================
+    story.append(Paragraph("5. Empirical Verification & Evidence Breakdown (Phase 2)", h1_style))
+    story.append(Paragraph(
+        "Phase 2 evaluates behavioral habit fingerprinting from commit timestamps and the automated synthesis of weaponized spear-phishing "
+        "pretexts tailored specifically to the target's public tech stack.",
+        body_style
+    ))
+
+    # Screenshot 3: Timezone Activity Radar
+    img3_path = os.path.join(SCREENSHOTS_DIR, "03_timezone_activity_radar.png")
+    if os.path.exists(img3_path):
+        story.append(Image(img3_path, width=440, height=222))
+        story.append(Paragraph("Figure 3: 24-Hour UTC Activity Radar & Timezone Behavioral Inference", caption_style))
+
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 3:</b><br/>"
+        "• <b>Timestamp Mining:</b> The engine sampled 14 public commit actions, aggregating push times across 24 hourly buckets.<br/>"
+        "• <b>Peak Productivity Detection:</b> Identified peak activity between <b>06:00 - 07:59 UTC</b> (4 commits) and 10:00 - 11:59 UTC (4 commits).<br/>"
+        "• <b>Geographical Inference:</b> Accurately deduced the target's operating region as <b>Asia-Pacific / India (UTC+5:30 to UTC+8)</b>, "
+        "enabling an adversary to deliver pretexts during active operational hours when victim cognitive fatigue is highest.",
+        body_style
+    ))
+    story.append(Spacer(1, 4))
+
+    # Screenshot 4: Pretext Synthesis
+    img4_path = os.path.join(SCREENSHOTS_DIR, "04_spear_phishing_pretexts.png")
+    if os.path.exists(img4_path):
+        story.append(Image(img4_path, width=440, height=222))
+        story.append(Paragraph("Figure 4: Automated Spear-Phishing Pretext Synthesis (Attacker Perspective)", caption_style))
+
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 4:</b><br/>"
+        "• <b>Vector SP-01 (Technical Zero-Day CVE Alert):</b> Weaponized the target's Python repo: <i>'Urgent CVE Patch for Peer-s-Target-Profiler'</i>, "
+        "incorporating deceptive dependency tree links (<code>https://security-patch-advisory.org/...</code>).<br/>"
+        "• <b>Vector SP-02 (Corporate Workspace Re-Authentication):</b> Leverages organizational identity to craft an urgent Single Sign-On renewal lure.<br/>"
+        "• <b>Vector SP-03 (Targeted Recruiter Hook):</b> Poses as an executive headhunter praising Python open-source commits with compensation bait.",
+        body_style
+    ))
+
+    story.append(PageBreak())
+
+    # =========================================================================
+    # PAGE 5: EMPIRICAL EVIDENCE PHASE 3 (Figures 5 & 6)
+    # =========================================================================
+    story.append(Paragraph("5. Empirical Verification & Evidence Breakdown (Phase 3)", h1_style))
+    story.append(Paragraph(
+        "Phase 3 validates the quantitative OPSEC exposure calculation and the automated export of the official JSON deliverable "
+        "required by the Sqrock internship syllabus.",
+        body_style
+    ))
+
+    # Screenshot 5: OPSEC Scorer
+    img5_path = os.path.join(SCREENSHOTS_DIR, "05_opsec_risk_eval.png")
+    if os.path.exists(img5_path):
+        story.append(Image(img5_path, width=440, height=222))
+        story.append(Paragraph("Figure 5: Digital Footprint & OPSEC Risk Scoring Evaluation (30/100 Moderate Exposure)", caption_style))
+
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 5:</b><br/>"
+        "• <b>Quantitative Threat Score:</b> Calculated an overall threat exposure score of <b>30/100 (MODERATE EXPOSURE)</b>.<br/>"
+        "• <b>Risk Factor Ledger:</b> Points were awarded for <i>Real Full Name Disclosed</i> (+15 pts) and <i>Descriptive Bio</i> (+15 pts).<br/>"
+        "• <b>Defensive Validation:</b> Commended the target with <b>[0 pts]</b> for <i>Email Masked / Noreply Enforced</i>, validating that "
+        "Mohammed Peer Siddiqui maintains strong email OPSEC by concealing direct email addresses from raw Git commits.",
+        body_style
+    ))
+    story.append(Spacer(1, 4))
+
+    # Screenshot 6: JSON Export
+    img6_path = os.path.join(SCREENSHOTS_DIR, "06_json_export_success.png")
+    if os.path.exists(img6_path):
+        story.append(Image(img6_path, width=440, height=222))
+        story.append(Paragraph("Figure 6: Automated Target Dossier Export to target_profile.json", caption_style))
+
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 6:</b><br/>"
+        "• <b>Deliverable Generation:</b> Executing Option <code>[8]</code> exported the full intelligence dossier, activity patterns, and OPSEC "
+        "evaluation to <code>targets/target_profile.json</code> with zero schema formatting errors.<br/>"
+        "• <b>Verification:</b> Output matches the Day 05 curriculum specifications for structured threat profile deliverables.",
+        body_style
+    ))
+
+    story.append(PageBreak())
+
+    # =========================================================================
+    # PAGE 6: OPEN-SOURCE VERIFICATION & GITHUB INTEGRITY
+    # =========================================================================
+    story.append(Paragraph("6. Open-Source Implementation & GitHub Verification", h1_style))
+    story.append(Paragraph(
+        "To ensure compliance with transparent security engineering standards, the full source code, test suites, and documentation were "
+        "published to the public GitHub repository at <code>https://github.com/MdPeerSiddiqui/Peer-s-Target-Profiler</code>.",
+        body_style
+    ))
+
+    # Screenshot 7: GitHub Repo Overview
+    img7_path = os.path.join(SCREENSHOTS_DIR, "07_github_repo_overview.png")
+    if os.path.exists(img7_path):
+        story.append(Image(img7_path, width=450, height=252))
+        story.append(Paragraph("Figure 7: Public GitHub Repository Header, Shields.io Badges & Quality Indicators", caption_style))
+
+    story.append(Paragraph(
+        "<b>Technical Analysis of Figure 7:</b><br/>"
+        "• <b>Repository Architecture:</b> Publicly accessible repository under authorized account <code>MdPeerSiddiqui</code>.<br/>"
+        "• <b>Verification Badges:</b> Verified build badges displaying <b>Python 3.9+</b>, cross-platform support (<b>Kali Linux | Windows | macOS</b>), "
+        "<b>7/7 Passing Tests</b>, and open-source <b>MIT Licensing</b>.<br/>"
+        "• <b>Documentation & Reproducibility:</b> README provides end-to-end setup instructions, virtual environment workflows, and execution pipelines.",
+        body_style
+    ))
+    story.append(Spacer(1, 4))
+
+    story.append(Paragraph("7. Multi-Platform Deployment & Reproducibility Pipeline", h2_style))
+    pipeline_data = [
+        [Paragraph("<b>Operating System</b>", body_bold), Paragraph("<b>Clone & Setup Workflow</b>", body_bold), Paragraph("<b>Execution Command</b>", body_bold)],
+        [
+            Paragraph("<b>Kali Linux / Ubuntu / Debian</b>", body_style),
+            Paragraph("<code>git clone https://github.com/MdPeerSiddiqui/Peer-s-Target-Profiler.git<br/>cd Peer-s-Target-Profiler<br/>python3 -m venv .venv &amp;&amp; source .venv/bin/activate<br/>pip install -r requirements.txt</code>", body_style),
+            Paragraph("<code>python3 target_profiler.py</code>", body_style)
+        ],
+        [
+            Paragraph("<b>Windows 10 / 11 (PowerShell)</b>", body_style),
+            Paragraph("<code>git clone https://github.com/MdPeerSiddiqui/Peer-s-Target-Profiler.git<br/>cd Peer-s-Target-Profiler<br/>python -m venv .venv; .\\.venv\\Scripts\\activate<br/>pip install -r requirements.txt</code>", body_style),
+            Paragraph("<code>python target_profiler.py</code>", body_style)
+        ]
+    ]
+    t_pipe = Table(pipeline_data, colWidths=[120, 310, 110])
+    t_pipe.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), NAVY_PRIMARY),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
+        ('BOX', (0,0), (-1,-1), 1, NAVY_PRIMARY),
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT_BG]),
+        ('TOPPADDING', (0,0), (-1,-1), 3),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
+        ('LEFTPADDING', (0,0), (-1,-1), 5),
+        ('RIGHTPADDING', (0,0), (-1,-1), 5),
+    ]))
+    story.append(t_pipe)
+
+    story.append(PageBreak())
+
+    # =========================================================================
+    # PAGE 7: DEFENSIVE COUNTERMEASURES, TESTS & ETHICAL DECLARATION
+    # =========================================================================
+    story.append(Paragraph("8. Technical OPSEC Defensive Architecture & Mitigation", h1_style))
+    story.append(Paragraph(
+        "<b>A. Enforcing GitHub Private Email Relays:</b><br/>"
+        "Developers must navigate to <i>Settings ➔ Emails</i>, select <i>'Keep my email addresses private'</i>, and enable <i>'Block command line pushes "
+        "that expose my email'</i>. This prevents local git client configurations from embedding personal email strings into public Git author logs.",
+        body_style
+    ))
+    story.append(Paragraph(
+        "<b>B. Git Local Identity Sanitization:</b><br/>"
+        "Ensure all local development repositories bind exclusively to the GitHub noreply alias:<br/>"
+        "<code>git config --global user.email 'username@users.noreply.github.com'</code><br/>"
+        "For corporate repositories, developers should strictly separate corporate git identity from public personal handles.",
+        body_style
+    ))
+    story.append(Paragraph(
+        "<b>C. Out-of-Band Validation of Security Advisories:</b><br/>"
+        "Organizations must establish clear policy: <i>Never click external security patch links or SSO migration prompts received via email "
+        "or social messaging. Always navigate independently to official internal dashboards (e.g., Okta/Azure AD) or official GitHub Security tabs.</i>",
+        body_style
+    ))
 
     story.append(Paragraph("9. Automated Unit Testing Verification Suite", h1_style))
     test_rows = [
@@ -496,12 +596,12 @@ def create_report():
     ]
     t_test = Table(test_rows, colWidths=[180, 200, 75, 85])
     t_test.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), DARK_BLUE),
+        ('BACKGROUND', (0,0), (-1,0), NAVY_PRIMARY),
         ('TEXTCOLOR', (0,0), (-1,0), colors.white),
         ('ALIGN', (2,0), (-1,-1), 'CENTER'),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
         ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
-        ('BOX', (0,0), (-1,-1), 1, DARK_BLUE),
+        ('BOX', (0,0), (-1,-1), 1, NAVY_PRIMARY),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT_BG]),
         ('TOPPADDING', (0,0), (-1,-1), 1.5),
         ('BOTTOMPADDING', (0,0), (-1,-1), 1.5),
